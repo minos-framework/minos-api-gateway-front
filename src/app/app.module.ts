@@ -11,20 +11,32 @@ import {AlertComponent} from "./components/alert/alert.component";
 import {appRoutingModule} from "./app-routing.module";
 import {ErrorInterceptor} from "./helpers/error.interceptor";
 import {JwtInterceptor} from "./helpers/jwt.interceptor";
+import { MenuComponent } from './components/menu/menu.component';
+import {MenubarModule} from 'primeng/menubar';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import {SharedModule} from "primeng/api";
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
-    imports: [
-        BrowserModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        appRoutingModule,
-        CommonModule,
-    ],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    appRoutingModule,
+    CommonModule,
+    MenubarModule,
+    InputTextModule,
+    ButtonModule,
+    SharedModule,
+  ],
     declarations: [
         AppComponent,
         DashboardComponent,
         LoginComponent,
-        AlertComponent
+        AlertComponent,
+        MenuComponent,
+        LogoutComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
