@@ -17,6 +17,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import {SharedModule} from "primeng/api";
 import { LogoutComponent } from './logout/logout.component';
+import { EndpointComponent } from './endpoint/endpoint.component';
+import {TableModule} from 'primeng/table';
 
 @NgModule({
   imports: [
@@ -29,6 +31,7 @@ import { LogoutComponent } from './logout/logout.component';
     InputTextModule,
     ButtonModule,
     SharedModule,
+    TableModule,
   ],
     declarations: [
         AppComponent,
@@ -36,7 +39,8 @@ import { LogoutComponent } from './logout/logout.component';
         LoginComponent,
         AlertComponent,
         MenuComponent,
-        LogoutComponent
+        LogoutComponent,
+        EndpointComponent,
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
