@@ -1,0 +1,67 @@
+
+<div class="card">
+  <div class="flex justify-content-center flex-wrap card-container blue-container text-center">
+    <h2>Login</h2>
+  </div>
+  <div class="flex justify-content-center flex-wrap card-container blue-container text-center">
+
+    <div class="grid p-fluid">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="col-12">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+            <input type="text" pInputText placeholder="Username" formControlName="username" class="form-control"
+                   [ngClass]="{ 'is-invalid': submitted && loginForm.controls['username'].invalid }"/>
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Password is required',
+                  control: loginForm.controls['username']
+                }"
+            ></ng-container>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">$</span>
+            <input type="password" pInputText placeholder="Password" formControlName="password" class="form-control"
+                   [ngClass]="{ 'is-invalid': submitted && loginForm.controls['password'].invalid }"/>
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Password is required',
+                  control: loginForm.controls['password']
+                }"
+            ></ng-container>
+          </div>
+        </div>
+
+
+        <ng-template
+          #formError
+          let-control="control"
+          let-message="message"
+          let-validation="validation"
+        >
+          <ng-container
+            *ngIf="control && control.hasError(validation) && (control.dirty || control.touched)"
+          >
+            <div class="fv-plugins-message-container">
+              <span role="alert">
+                {{ message }}
+              </span>
+            </div>
+          </ng-container>
+        </ng-template>
+        <div class="form-group">
+          <button pButton [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
