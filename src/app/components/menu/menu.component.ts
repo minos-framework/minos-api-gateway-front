@@ -22,6 +22,11 @@ export class MenuComponent implements OnInit {
                 label:'Endpoints',
                 icon:'pi pi-fw pi-link',
                 url: 'endpoints',
+            },
+            {
+                label:'Auth Rules',
+                icon:'pi pi-fw pi-directions',
+                url: 'rules',
             }
         ];
   }

@@ -19,7 +19,7 @@
         <td>{{ endpoint.status}}</td>
         <td>
           <div *ngFor="let e of endpoint.endpoints">
-            {{e}}
+            {{e.replace("endpoint:", "")}}
           </div>
         </td>
         <td>
