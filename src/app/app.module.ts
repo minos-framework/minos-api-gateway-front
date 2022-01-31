@@ -17,6 +17,12 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import {SharedModule} from "primeng/api";
 import { LogoutComponent } from './logout/logout.component';
+import { EndpointComponent } from './endpoint/endpoint.component';
+import {TableModule} from 'primeng/table';
+import { RulesComponent } from './rules/rules.component';
+import { RuleAddComponent } from './rules/rule-add/rule-add.component';
+import { RuleEditComponent } from './rules/rule-edit/rule-edit.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -29,6 +35,8 @@ import { LogoutComponent } from './logout/logout.component';
     InputTextModule,
     ButtonModule,
     SharedModule,
+    TableModule,
+    NgbModule,
   ],
     declarations: [
         AppComponent,
@@ -36,7 +44,11 @@ import { LogoutComponent } from './logout/logout.component';
         LoginComponent,
         AlertComponent,
         MenuComponent,
-        LogoutComponent
+        LogoutComponent,
+        EndpointComponent,
+        RulesComponent,
+        RuleAddComponent,
+        RuleEditComponent,
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -15,13 +15,18 @@ export class MenuComponent implements OnInit {
     this.items = [
             {
                 label:'Home',
-                icon:'pi pi-fw pi-file',
+                icon:'pi pi-fw pi-home',
                 url: '/',
             },
             {
                 label:'Endpoints',
-                icon:'pi pi-fw pi-power-off',
+                icon:'pi pi-fw pi-link',
                 url: 'endpoints',
+            },
+            {
+                label:'Auth Rules',
+                icon:'pi pi-fw pi-directions',
+                url: 'rules',
             }
         ];
   }

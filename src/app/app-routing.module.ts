@@ -1,12 +1,14 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './helpers/auth.guard';
 import {LogoutComponent} from "./logout/logout.component";
+import {EndpointComponent} from "./endpoint/endpoint.component";
+import {RulesComponent} from "./rules/rules.component";
 
 const routes: Routes = [
-    { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
+    { path: '', component: EndpointComponent, canActivate: [AuthGuard] },
+    { path: 'rules', component: RulesComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'logout', component: LogoutComponent },
 
