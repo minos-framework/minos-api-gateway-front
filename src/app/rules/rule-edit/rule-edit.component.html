@@ -1,1 +1,145 @@
-<p>rule-edit works!</p>
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Edit Rule</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('close')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form
+    class="form w-100"
+    [formGroup]="ruleForm"
+    novalidate="novalidate"
+    id="kt_login_signin_form"
+    (ngSubmit)="submit()"
+  >
+
+    <!-- begin::Alert error-->
+    <ng-container *ngIf="hasError">
+      <div class="mb-lg-15 alert alert-danger">
+        <div class="alert-text font-weight-bold">
+          Room details are incorrect
+        </div>
+      </div>
+    </ng-container>
+    <!-- end::Alert error-->
+
+    <!--begin::Form group-->
+    <div class="fv-row mb-3">
+      <label class="form-label fs-6 fw-bolder text-dark">Service name</label>
+      <input
+        class="form-control form-control-lg form-control-solid"
+        type="text"
+        name="service"
+        formControlName="service"
+        autocomplete="off"
+        [ngClass]="{
+              'is-invalid': ruleForm.controls['service'].invalid,
+              'is-valid': ruleForm.controls['service'].valid
+            }"
+      />
+      <ng-container
+        [ngTemplateOutlet]="formError"
+        [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Service name is required',
+              control: ruleForm.controls['service']
+            }"
+      ></ng-container>
+    </div>
+    <!--end::Form group-->
+
+
+    <!--begin::Form group-->
+    <div class="fv-row mb-3">
+      <label class="form-label fs-6 fw-bolder text-dark">Rule</label>
+      <input
+        class="form-control form-control-lg form-control-solid"
+        type="text"
+        name="rule"
+        formControlName="rule"
+        autocomplete="off"
+        [ngClass]="{
+              'is-invalid': ruleForm.controls['rule'].invalid,
+              'is-valid': ruleForm.controls['rule'].valid
+            }"
+      />
+      <ng-container
+        [ngTemplateOutlet]="formError"
+        [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'rule is required',
+              control: ruleForm.controls['rule']
+            }"
+      ></ng-container>
+    </div>
+    <!--end::Form group-->
+
+    <div class="alert alert-success" role="alert">
+      <h4 class="alert-heading">How to correctly define routes!</h4>
+      <pre>
+        {{this.codeExample}}
+      </pre>
+    </div>
+
+    <div class="fv-row mb-3">
+      <label class="form-label fs-6 fw-bolder text-dark">Methods</label>
+      <select formControlName="methods" multiple style="height: 210px"
+              class="form-control form-control-lg form-control-solid form-select form-select-solid form-select-lg"
+              [ngClass]="{
+            'is-invalid': ruleForm.controls['methods'].invalid,
+            'is-valid': ruleForm.controls['methods'].valid
+          }">
+        <option value="*">ALL</option>
+        <option value="GET">GET</option>
+        <option value="POST">POST</option>
+        <option value="PUT">PUT</option>
+        <option value="PATCH">OPTIONS</option>
+        <option value="DELETE">DELETE</option>
+        <option value="HEAD">HEAD</option>
+        <option value="OPTIONS">OPTIONS</option>
+      </select>
+
+      <ng-container
+        [ngTemplateOutlet]="formError"
+        [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Method is required',
+              control: ruleForm.controls['methods']
+            }"
+      ></ng-container>
+    </div>
+
+    <div class="text-center">
+      <button
+        type="submit"
+        id="kt_sign_up_submit"
+        [disabled]="
+              ruleForm.invalid
+            "
+        class="btn btn-lg btn-primary w-100 mb-5"
+      >
+        <span class="indicator-label">Submit</span>
+      </button>
+    </div>
+    <!--end::Form group-->
+  </form>
+  <!--end::Form-->
+
+  <ng-template
+    #formError
+    let-control="control"
+    let-message="message"
+    let-validation="validation"
+  >
+    <ng-container
+      *ngIf="control && control.hasError(validation) && (control.dirty || control.touched)"
+    >
+      <div class="fv-plugins-message-container">
+            <span role="alert">
+              {{ message }}
+            </span>
+      </div>
+    </ng-container>
+  </ng-template>
+</div>
+

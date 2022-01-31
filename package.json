@@ -20,6 +20,7 @@
     "@angular/platform-browser": "~13.0.0-next.0",
     "@angular/platform-browser-dynamic": "~13.0.0-next.0",
     "@angular/router": "~13.0.0-next.0",
+    "@ng-bootstrap/ng-bootstrap": "^11.0.0",
     "bootstrap": "^4.6.0",
     "primeflex": "^3.1.2",
     "primeicons": "^5.0.0",

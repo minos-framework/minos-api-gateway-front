@@ -22,6 +22,7 @@ import {TableModule} from 'primeng/table';
 import { RulesComponent } from './rules/rules.component';
 import { RuleAddComponent } from './rules/rule-add/rule-add.component';
 import { RuleEditComponent } from './rules/rule-edit/rule-edit.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { RuleEditComponent } from './rules/rule-edit/rule-edit.component';
     ButtonModule,
     SharedModule,
     TableModule,
+    NgbModule,
   ],
     declarations: [
         AppComponent,
