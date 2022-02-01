@@ -5,6 +5,7 @@ import {first} from "rxjs/operators";
 import {RuleModel} from "../../models/rule.model";
 import {RuleService} from "../../services/rule.service";
 import {Subscription} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-rule-add',
@@ -15,6 +16,7 @@ export class RuleAddComponent implements OnInit {
   @Input() name: any;
   ruleForm!: FormGroup;
   hasError!: boolean;
+  errorMessage!: any;
   private unsubscribe: Subscription[] = [];
 
   codeExample: string = '\n<url-pattern> := <scheme>://<host><path>\n' +
@@ -22,7 +24,7 @@ export class RuleAddComponent implements OnInit {
     '<host> := \'*\' | \'*.\' <any char except \'/\' and \'*\'>+\n' +
     '<path> := \'/\' <any chars>'
 
-  constructor(private fb: FormBuilder, public activeModal: NgbActiveModal, private ruleService: RuleService) {
+  constructor(private fb: FormBuilder, public activeModal: NgbActiveModal, private ruleService: RuleService, private router: Router,) {
   }
 
   ngOnInit(): void {
@@ -34,15 +36,22 @@ export class RuleAddComponent implements OnInit {
   }
 
   initForm() {
+    let name = `${this.name}s`
+    if(this.name == '*') {
+      name = this.name
+    } else {
+      this.name = name
+    }
+
     this.ruleForm = this.fb.group({
       service: [
-        `${this.name}s`,
+        name,
         Validators.compose([
           Validators.required
         ]),
       ],
       rule: [
-        `*://*/${this.name}s/*`,
+        `*://*/${name}/*`,
         Validators.compose([
           Validators.required
         ]),
@@ -70,13 +79,19 @@ export class RuleAddComponent implements OnInit {
 
     const employeeSub = this.ruleService.addRule(newRule)
       .pipe(first())
-      .subscribe((rule: RuleModel) => {
-        if (rule) {
-          this.activeModal.close();
-        } else {
+      .subscribe(
+        result => {
+          console.log(result)
+        },
+        error => {
           this.hasError = true;
+          this.errorMessage = error;
+        },
+        () => {
+          this.activeModal.close();
+          this.router.navigate(['/rules']);
         }
-      })
+      )
     this.unsubscribe.push(employeeSub);
   }
 

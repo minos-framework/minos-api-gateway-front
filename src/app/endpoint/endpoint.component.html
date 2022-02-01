@@ -1,4 +1,17 @@
-<h2>Listing endpoints</h2>
+<div class="container-fluid">
+  <div class="row mt-3 mb-3">
+    <div class="col-auto mr-auto">
+      <h2>Listing endpoints</h2>
+    </div>
+    <div class="col-auto">
+      <button pButton class="btn btn-primary" (click)="open('*')">
+        Add new rule<i class="pi pi-plus ml-2"></i>
+      </button>
+    </div>
+  </div>
+
+
+</div>
 <ng-container *ngIf="endpoints | async as data">
   <p-table [value]="data" responsiveLayout="scroll">
     <ng-template pTemplate="header">
@@ -24,7 +37,7 @@
         </td>
         <td>
           <button pButton class="btn btn-primary" (click)="open(endpoint.name)">
-            <i class="pi pi-plus"></i>
+            Add rule <i class="pi pi-plus ml-2"></i>
           </button>
         </td>
       </tr>
