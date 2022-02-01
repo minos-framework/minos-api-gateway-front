@@ -1,8 +1,31 @@
-<p-menubar [model]="items">
-    <ng-template pTemplate="start">
-        <img src="assets/images/minos_color@2x.png" height="30" class="mr-2">
-    </ng-template>
-    <ng-template pTemplate="end">
-        <button type="button" pButton label="Logout" icon="pi pi-power-off" [routerLink]="'logout'" style="margin-left:.25em"></button>
-    </ng-template>
-</p-menubar>
+<!--p-menubar [model]="items">
+  <ng-template pTemplate="start">
+    <img src="assets/images/minos_color@2x.png" height="30" class="mr-2">
+  </ng-template>
+  <ng-template pTemplate="end">
+    <button type="button" pButton label="Logout" icon="pi pi-power-off" [routerLink]="'logout'"
+            style="margin-left:.25em"></button>
+  </ng-template>
+</p-menubar-->
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#">
+    <img src="assets/images/minos_color@2x.png" height="30" alt="logo">
+  </a>
+
+  <!-- Links -->
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/endpoints">Endpoints</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/rules">Auth Rules</a>
+    </li>
+  </ul>
+  <span class="navbar-text">
+      <button type="button" pButton class=" my-2 my-sm-0" label="Logout" icon="pi pi-power-off" routerLink="/logout"
+              style="margin-left:.25em"></button>
+    </span>
+
+</nav>

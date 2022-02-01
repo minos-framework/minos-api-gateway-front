@@ -1,10 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {RuleService} from "../../services/rule.service";
 import {RuleModel} from "../../models/rule.model";
 import {first} from "rxjs/operators";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-rule-edit',
@@ -21,13 +22,16 @@ export class RuleEditComponent implements OnInit {
   @Input() ruleId: any;
   ruleForm!: FormGroup;
   hasError!: boolean;
+  @Output() editModalEvent = new EventEmitter<string>();
   private unsubscribe: Subscription[] = [];
 
   codeExample: string = '\n<url-pattern> := <scheme>://<host><path>\n' +
     '<scheme> := \'*\' | \'http\' | \'https\'\n' +
     '<host> := \'*\' | \'*.\' <any char except \'/\' and \'*\'>+\n' +
     '<path> := \'/\' <any chars>'
-  constructor(private fb: FormBuilder, public activeModal: NgbActiveModal, private ruleService: RuleService) { }
+  constructor(private fb: FormBuilder, public activeModal: NgbActiveModal, private ruleService: RuleService, private router: Router) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -76,8 +80,8 @@ export class RuleEditComponent implements OnInit {
       .pipe(first())
       .subscribe((rule: RuleModel) => {
         if (rule) {
-          this.activeModal.close();
-          location.reload()
+          this.editModalEvent.emit('closeModal');
+          this.router.navigate(['rules'], )
         } else {
           this.hasError = true;
         }
