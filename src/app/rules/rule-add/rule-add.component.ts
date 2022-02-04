@@ -37,8 +37,10 @@ export class RuleAddComponent implements OnInit {
 
   initForm() {
     let name = `${this.name}s`
+    let rule = `*://*/${name}*`
     if(this.name == '*') {
       name = this.name
+      rule = `*://*/*`
     } else {
       this.name = name
     }
@@ -51,7 +53,7 @@ export class RuleAddComponent implements OnInit {
         ]),
       ],
       rule: [
-        `*://*/${name}/*`,
+        rule,
         Validators.compose([
           Validators.required
         ]),

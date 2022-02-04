@@ -26,8 +26,7 @@
     <!--begin::Form group-->
     <div class="fv-row mb-3">
       <label class="form-label fs-6 fw-bolder text-dark">Service name</label>
-      <ng-container *ngIf="name == '*'">
-        <input
+      <input
           class="form-control form-control-lg form-control-solid"
           type="text"
           name="service"
@@ -47,27 +46,6 @@
                 control: ruleForm.controls['service']
               }"
         ></ng-container>
-      </ng-container>
-      <ng-container *ngIf="name != '*'">
-        <select formControlName="service"
-              class="form-control form-control-lg form-control-solid form-select form-select-solid form-select-lg"
-              [ngClass]="{
-            'is-invalid': ruleForm.controls['service'].invalid,
-            'is-valid': ruleForm.controls['service'].valid
-          }">
-
-        <option [ngValue]="name" selected="selected">{{name}}</option>
-        <option value="*">ALL</option>
-      </select>
-        <ng-container
-        [ngTemplateOutlet]="formError"
-        [ngTemplateOutletContext]="{
-              validation: 'required',
-              message: 'Service is required',
-              control: ruleForm.controls['service']
-            }"
-      ></ng-container>
-      </ng-container>
     </div>
     <!--end::Form group-->
 
