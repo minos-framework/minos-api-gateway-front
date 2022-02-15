@@ -4,9 +4,13 @@
       <h2>Listing endpoints</h2>
     </div>
     <div class="col-auto">
-      <button pButton class="btn btn-primary" (click)="open('*')">
-        Add new rule<i class="pi pi-plus ml-2"></i>
+      <button pButton class="btn btn-primary mr-4" (click)="open_authentication('*')">
+        New authentication rule<i class="pi pi-plus ml-2"></i>
       </button>
+      <button pButton class="btn btn-primary" (click)="open_authorization('*')">
+        New authorization rule<i class="pi pi-plus ml-2"></i>
+      </button>
+
     </div>
   </div>
 
@@ -36,9 +40,17 @@
           </div>
         </td>
         <td>
-          <button pButton class="btn btn-primary" (click)="open(endpoint.name)">
-            Add rule <i class="pi pi-plus ml-2"></i>
-          </button>
+          <p>
+            <button pButton class="btn btn-primary" (click)="open_authentication(endpoint.name)">
+              Add auth rule <i class="pi pi-plus ml-2"></i>
+            </button>
+          </p>
+          <p>
+            <button pButton class="btn btn-primary" (click)="open_authorization(endpoint.name)">
+              Add autz rule <i class="pi pi-plus ml-2"></i>
+            </button>
+          </p>
+
         </td>
       </tr>
     </ng-template>

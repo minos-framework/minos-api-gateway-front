@@ -1,6 +1,6 @@
 <div class="modal-header">
-  <h4 class="modal-title" id="modal-basic-title">Edit Rule</h4>
-  <button type="button" class="close" aria-label="Close" (click)="this.editModalEvent.emit('closeModal')">
+  <h4 class="modal-title" id="modal-basic-title">New Authorization Rule</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('close')">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
@@ -23,29 +23,51 @@
     </ng-container>
     <!-- end::Alert error-->
 
-    <!--begin::Form group-->
     <div class="fv-row mb-3">
-      <label class="form-label fs-6 fw-bolder text-dark">Service name</label>
-      <input
-        class="form-control form-control-lg form-control-solid"
-        type="text"
-        name="service"
-        formControlName="service"
-        autocomplete="off"
-        [ngClass]="{
-              'is-invalid': ruleForm.controls['service'].invalid,
-              'is-valid': ruleForm.controls['service'].valid
-            }"
-      />
-      <small id="emailHelp" class="form-text text-muted">'*' means all endpoints</small>
+      <label class="form-label fs-6 fw-bolder text-dark">Roles (access allowed)</label>
+      <select formControlName="roles" multiple style="height: 120px"
+              class="form-control form-control-lg form-control-solid form-select form-select-solid form-select-lg"
+              [ngClass]="{
+            'is-invalid': ruleForm.controls['roles'].invalid,
+            'is-valid': ruleForm.controls['roles'].valid
+          }">
+        <option value="*">ALL</option>
+        <option *ngFor="let role of roles | async" [ngValue]="role.code">{{role.role_name}}</option>
+      </select>
+
       <ng-container
         [ngTemplateOutlet]="formError"
         [ngTemplateOutletContext]="{
               validation: 'required',
-              message: 'Service name is required',
-              control: ruleForm.controls['service']
+              message: 'Method is required',
+              control: ruleForm.controls['methods']
             }"
       ></ng-container>
+    </div>
+
+    <!--begin::Form group-->
+    <div class="fv-row mb-3">
+      <label class="form-label fs-6 fw-bolder text-dark">Service name</label>
+      <input
+          class="form-control form-control-lg form-control-solid"
+          type="text"
+          name="service"
+          formControlName="service"
+          autocomplete="off"
+          [ngClass]="{
+                'is-invalid': ruleForm.controls['service'].invalid,
+                'is-valid': ruleForm.controls['service'].valid
+              }"
+        />
+        <small id="emailHelp" class="form-text text-muted">'*' means all endpoints</small>
+        <ng-container
+          [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'service is required',
+                control: ruleForm.controls['service']
+              }"
+        ></ng-container>
     </div>
     <!--end::Form group-->
 

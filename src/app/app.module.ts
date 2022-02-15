@@ -23,6 +23,9 @@ import { RulesComponent } from './rules/rules.component';
 import { RuleAddComponent } from './rules/rule-add/rule-add.component';
 import { RuleEditComponent } from './rules/rule-edit/rule-edit.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AutzRulesComponent } from './autz-rules/autz-rules.component';
+import { AutzRuleAddComponent } from './autz-rules/autz-rule-add/autz-rule-add.component';
+import { AutzRuleEditComponent } from './autz-rules/autz-rule-edit/autz-rule-edit.component';
 
 @NgModule({
   imports: [
@@ -49,6 +52,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         RulesComponent,
         RuleAddComponent,
         RuleEditComponent,
+        AutzRulesComponent,
+        AutzRuleAddComponent,
+        AutzRuleEditComponent,
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

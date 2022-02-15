@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {EndpointModel} from "../models/endpoint.model";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {RuleAddComponent} from "../rules/rule-add/rule-add.component";
+import {AutzRuleAddComponent} from "../autz-rules/autz-rule-add/autz-rule-add.component";
 
 @Component({
   selector: 'app-endpoint',
@@ -19,8 +20,13 @@ export class EndpointComponent implements OnInit {
     this.initTable()
   }
 
-  open(service_name: string) {
+  open_authentication(service_name: string) {
     const modal = this.modalService.open(RuleAddComponent);
+    modal.componentInstance.name = service_name
+  }
+
+  open_authorization(service_name: string) {
+    const modal = this.modalService.open(AutzRuleAddComponent);
     modal.componentInstance.name = service_name
   }
 

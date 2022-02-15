@@ -1,0 +1,50 @@
+<h2 class="mt-2 mb-2">Listing authorization rules</h2>
+<ng-container *ngIf="rules | async as rule">
+  <p-table [value]="rule" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Id</th>
+        <th>Service</th>
+        <th>Rule</th>
+        <th>Roles</th>
+        <th>Methods</th>
+        <th>Created</th>
+        <th>Updated</th>
+        <th>Options</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rule>
+      <tr>
+        <td>{{rule.id}}</td>
+        <td>{{ rule.service}}</td>
+        <td>{{ rule.rule}}</td>
+        <td>
+          <div *ngFor="let role of rule.roles">
+            {{role}}
+          </div>
+        </td>
+        <td>
+          <div *ngFor="let method of rule.methods">
+            {{method}}
+          </div>
+        </td>
+        <td>{{ rule.created_at}}</td>
+        <td>{{ rule.updated_at}}</td>
+        <td>
+          <button class="btn btn-outline-primary mr-2" (click)="open(editRule)">
+            <i class="pi pi-pencil"></i>
+          </button>
+          <button class="btn btn-outline-danger" (click)="deleteRule(rule.id)">
+            <i class="pi pi-trash"></i>
+          </button>
+
+          <ng-template #editRule let-modal>
+            <app-autz-rule-edit (editModalEvent)="modal.dismiss('close')" [service]="rule.service" [rule]="rule.rule"
+                             [roles]="rule.roles" [methods]="rule.methods" [ruleId]="rule.id"></app-autz-rule-edit>
+          </ng-template>
+        </td>
+
+      </tr>
+    </ng-template>
+  </p-table>
+</ng-container>
